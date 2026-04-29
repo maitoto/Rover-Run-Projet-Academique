@@ -27,22 +27,15 @@ t_localisation translate(t_localisation , t_move);
 
 t_orientation rotate(t_orientation ori, t_move move)
 {
-    int rst;
+    int rst = 0;  // ← initialiser à 0 par défaut (pas de rotation)
     switch (move)
     {
-        case T_LEFT:
-            rst=3;
-            break;
-        case T_RIGHT:
-            rst=1;
-            break;
-        case U_TURN:
-            rst=2;
-            break;
-        default:
-            break;
+        case T_LEFT:  rst = 3; break;
+        case T_RIGHT: rst = 1; break;
+        case U_TURN:  rst = 2; break;
+        default:      rst = 0; break;  // F_10, F_20, F_30, B_10 → pas de rotation
     }
-    return (ori+rst)%4;
+    return (ori + rst) % 4;
 }
 
 t_localisation translate(t_localisation loc, t_move move)
