@@ -140,11 +140,12 @@ char *getMoveAsString(t_move move)
     return _moves[move];
 }
 
-t_localisation move(t_localisation loc, t_move move)
+t_localisation move(t_localisation loc, t_move mv)
 {
     t_localisation new_loc;
-    new_loc.ori = rotate(loc.ori, move);
-    new_loc = translate(loc, move);
+    new_loc.ori = rotate(loc.ori, mv);   // 1. on tourne
+    new_loc.pos = loc.pos;               // 2. on garde la position
+    new_loc = translate(new_loc, mv);    // 3. on avance AVEC la nouvelle orientation
     return new_loc;
 }
 

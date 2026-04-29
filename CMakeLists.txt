@@ -1,9 +1,10 @@
 cmake_minimum_required(VERSION 3.27)
-project(untitled1 C)
+project(roverrun C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(untitled1 main.c
+add_executable(roverrun
+        main.c
         loc.c
         loc.h
         moves.c
@@ -13,4 +14,9 @@ add_executable(untitled1 main.c
         queue.c
         queue.h
         stack.c
-        stack.h)
+        stack.h
+        tree.c
+        tree.h
+        phase.c
+        phase.h
+)
