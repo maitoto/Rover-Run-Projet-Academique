@@ -9,7 +9,6 @@ int main()
 {
     t_map map;
 
-    // Charger la carte selon l'OS
 #if defined(_WIN32) || defined(_WIN64)
     map = createMapFromFile(".\\maps\\example1.map");
 #else
@@ -26,12 +25,8 @@ int main()
         printf("\n");
     }
 
-    // --- Position initiale de MARC ---
-    // Sur la carte example1.map, la base est en [2,1] (col 2, ligne 1)
-    // On place MARC en bas à droite, case [5,6], face au NORD
     t_localisation marc = loc_init(5, 6, NORTH);
 
-    // Lancer la mission (max 50 phases pour éviter une boucle infinie)
     runMission(&marc, map, 50);
 
     return 0;

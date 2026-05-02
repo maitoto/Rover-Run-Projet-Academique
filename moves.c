@@ -1,50 +1,26 @@
-//
-// Created by flasque on 19/10/2024.
-//
+
 
 #include "moves.h"
-
-/* prototypes of local functions */
-/* local functions are used only in this file, as helper functions */
-
-/**
- * @brief Function to rotate the robot according to a move and its actual orientation
- * @param ori : the actual orientation of the robot
- * @param move : the move to do
- * @return the new orientation of the robot
- */
 t_orientation rotate(t_orientation, t_move );
 
-/**
- * @brief function to translate the robot according to a move and its actual position
- * @param loc : the actual localisation of the robot
- * @param move : the move to do
- * @return the new localisation of the robot
- */
 t_localisation translate(t_localisation , t_move);
 
-/* definition of local functions */
 
 t_orientation rotate(t_orientation ori, t_move move)
 {
-    int rst = 0;  // ← initialiser à 0 par défaut (pas de rotation)
+    int rst = 0;  
     switch (move)
     {
         case T_LEFT:  rst = 3; break;
         case T_RIGHT: rst = 1; break;
         case U_TURN:  rst = 2; break;
-        default:      rst = 0; break;  // F_10, F_20, F_30, B_10 → pas de rotation
+        default:      rst = 0; break;  
     }
     return (ori + rst) % 4;
 }
 
 t_localisation translate(t_localisation loc, t_move move)
 {
-    /** rules for coordinates:
-     *  - x grows to the right with step of +1
-     *  - y grows to the bottom with step of +1
-     *  - the origin (x=0, y=0) is at the top left corner
-     */
     t_position res = loc.pos;
     switch (move) {
         case F_10:
@@ -126,8 +102,6 @@ t_localisation translate(t_localisation loc, t_move move)
 
 }
 
-/* definitions of exported functions */
-
 char *getMoveAsString(t_move move)
 {
     return _moves[move];
@@ -136,9 +110,9 @@ char *getMoveAsString(t_move move)
 t_localisation move(t_localisation loc, t_move mv)
 {
     t_localisation new_loc;
-    new_loc.ori = rotate(loc.ori, mv);   // 1. on tourne
-    new_loc.pos = loc.pos;               // 2. on garde la position
-    new_loc = translate(new_loc, mv);    // 3. on avance AVEC la nouvelle orientation
+    new_loc.ori = rotate(loc.ori, mv);  
+    new_loc.pos = loc.pos;               
+    new_loc = translate(new_loc, mv);    
     return new_loc;
 }
 
